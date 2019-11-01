@@ -26,7 +26,7 @@ export default {
   mounted() {
     axios
       .get(
-        "https://www.londonprayertimes.com/api/times/?format=json&key=ae900935-5768-40a8-9155-5fa95c6d6e89"
+        "https://www.londonprayertimes.com/api/times/?format=json&24hours=true&key=ae900935-5768-40a8-9155-5fa95c6d6e89"
       )
       .then(response => {
         this.wholeResponse = response.data;
