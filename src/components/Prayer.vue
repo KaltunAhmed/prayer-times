@@ -1,5 +1,8 @@
 <template>
   <v-container>
+    <div class="nav-bar">
+      <img src="../assets/prayer-img.png" class="logo-img"> 
+    </div>
     <div class="times">
       <!-- <h1>{{wholeResponse}}</h1> -->
       <h1>{{wholeResponse.city}}</h1>
@@ -40,6 +43,11 @@ export default {
 </script>
 
 <style scoped>
+.logo-img{
+  margin: 0 auto;
+  display: flex;
+  width: 41%;
+}
 .times {
   padding: 20px;
   margin: o auto;
