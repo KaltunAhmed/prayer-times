@@ -46,7 +46,12 @@ export default {
 .logo-img{
   margin: 0 auto;
   display: flex;
-  width: 41%;
+  width: 20%;
+}
+@media only screen and (max-width: 740px) {
+  .logo-img {
+   width: 50%;
+  }
 }
 .times {
   padding: 20px;
@@ -54,7 +59,6 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: 10%;
   letter-spacing: 3px;
 }
 .sunrise {
