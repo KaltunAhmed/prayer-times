@@ -47,7 +47,7 @@ export default {
       });
     {
       axios
-        .get("http://api.aladhan.com/v1/currentDate?zone=Europe/London")
+        .get("https://api.aladhan.com/v1/currentDate?zone=Europe/London")
         .then(dateResponse => {
           this.dateResponse = dateResponse.data;
           return this.dateResponse;
