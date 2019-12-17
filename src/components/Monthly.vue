@@ -1,7 +1,14 @@
 <template>
   <v-container>
-    <h1>Monthly</h1>
-    <h3>{{monthlyData}}</h3>
+    <h3>Monthly</h3>
+    <h3>{{monthlyData.data[1].meta.timezone}}</h3>
+    <h5>{{monthlyData.data[1].date.readable}}</h5>
+    <h5>Fajr: {{monthlyData.data[1].timings.Fajr}}</h5>
+    <h5>Sunset: {{monthlyData.data[1].timings.Dhuhr}}</h5>
+    <h5>Asr: {{monthlyData.data[1].timings.Asr}}</h5>
+    <h5>Sunset: {{monthlyData.data[1].timings.Sunset}}</h5>
+    <h5>Maghrib: {{monthlyData.data[1].timings.Maghrib}}</h5>
+    <h5>Isha: {{monthlyData.data[1].timings.Isha}}</h5>
   </v-container>
 </template>
 
@@ -17,7 +24,7 @@ export default {
   mounted() {
     axios
       .get(
-        "http://www.londonprayertimes.com/api/times/?format=json&24hours=true&year=2019&month=November&key=ae900935-5768-40a8-9155-5fa95c6d6e89"
+        "http://api.aladhan.com/v1/calendarByCity?city=London&country=United Kingdom&method=2&month=11&year=2019"
       )
       .then(response => {
         this.monthlyData = response.data;

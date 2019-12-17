@@ -1,19 +1,16 @@
 <template>
   <v-app>
-    <router-view><Prayer /></router-view>
-    <!-- <router-view><Monthly /></router-view> -->
+    <router-view></router-view>
   </v-app>
 </template>
 
 <script>
-import Prayer from "./components/Prayer";
-// import Monthly from "./components/Monthly";
+
 
 export default {
   name: "App",
   components: {
-    Prayer,
-    // Monthly
+
   },
   data: () => ({
     //

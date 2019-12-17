@@ -1,12 +1,18 @@
 <template>
   <v-container>
     <div class="nav-bar">
-      <img src="../assets/prayer-img.png" class="logo-img"> 
+      <router-link to="monthly">
+        <v-icon>fa fa-calendar</v-icon>
+      </router-link>
     </div>
+
     <div class="times">
+      <div class="header-img">
+        <img src="../assets/prayer-img.png" class="logo-img" />
+      </div>
       <!-- <h1>{{wholeResponse}}</h1> -->
       <h1>{{wholeResponse.city}}</h1>
-      <h1>{{wholeResponse.date}}</h1>
+      <h1>{{dateResponse.data}}</h1>
       <h4>Fajr: {{wholeResponse.fajr}}</h4>
       <h4 class="sunrise">Sunrise: {{wholeResponse.sunrise}}</h4>
       <h4>Dhuhr: {{wholeResponse.dhuhr}}</h4>
@@ -23,6 +29,7 @@ export default {
   data() {
     return {
       wholeResponse: [],
+      dateResponse: [],
       loading: true
     };
   },
@@ -38,19 +45,46 @@ export default {
       .catch(error => {
         return error;
       });
+    {
+      axios
+        .get("http://api.aladhan.com/v1/currentDate?zone=Europe/London")
+        .then(dateResponse => {
+          this.dateResponse = dateResponse.data;
+          return this.dateResponse;
+        })
+        .catch(error => {
+          return error;
+        });
+    }
   }
 };
 </script>
 
 <style scoped>
-.logo-img{
+.nav-bar {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  width: 20%;
+}
+.v-icon {
+  color: white;
+  text-align: center;
+  margin-top: 20%;
+  margin-left: 5%;
+}
+.logo-img {
   margin: 0 auto;
   display: flex;
   width: 20%;
 }
 @media only screen and (max-width: 740px) {
   .logo-img {
-   width: 50%;
+    width: 50%;
   }
 }
 .times {

@@ -12,7 +12,7 @@ export default new VueRouter({
       component: Prayer
     },
     {
-      path: "monthly",
+      path: "/monthly",
       name: "Monthly",
       component: Monthly
     },
