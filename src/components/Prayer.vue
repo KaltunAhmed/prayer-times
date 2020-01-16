@@ -1,10 +1,6 @@
 <template>
   <v-container>
-    <div class="nav-bar">
-      <router-link to="monthly">
-        <v-icon>fa fa-calendar</v-icon>
-      </router-link>
-    </div>
+    <NavBar></NavBar>
 
     <div class="times">
       <div class="header-img">
@@ -25,7 +21,9 @@
 
 <script>
 import axios from "axios";
+import NavBar from "./NavBar";
 export default {
+  components: { NavBar },
   data() {
     return {
       wholeResponse: [],

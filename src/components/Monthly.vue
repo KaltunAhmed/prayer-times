@@ -24,7 +24,7 @@ export default {
   mounted() {
     axios
       .get(
-        "http://api.aladhan.com/v1/calendarByCity?city=London&country=United Kingdom&method=2&month=11&year=2019"
+        "https://api.aladhan.com/v1/calendarByCity?city=London&country=United Kingdom&method=2&month=11&year=2019"
       )
       .then(response => {
         this.monthlyData = response.data;
