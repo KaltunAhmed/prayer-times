@@ -1,11 +1,33 @@
 <template>
-  <div :class="{ 'active' : active }">
-    <div>
-      <button @click="active=!active" class="open-button">
-        <v-icon class="exit" v-if="active">fa fa-times</v-icon>
-      </button>
+  <div>
+    <button @click="active=!active" class="open-button">
+      <v-icon class="exit" v-if="active">fa fa-times</v-icon>
+    </button>
+    <div class="static" :class="{ 'active' : active, 'close-div' :!active }">
+      <div class="side-bar-backdrop">
+        <transition name="slide">
+          <div v-if="active" class="sidebar-panel">
+            <div v-if="active" class="menu-items">
+              <!-- list -->
+              <ul>
+                <li>
+                  <button>Calander</button>
+                </li>
+                <li>
+                  <button>Quran</button>
+                </li>
+                <li>
+                  <button>Dua</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </transition>
+        <!-- button -->
+      </div>
+      <!-- side bar backdrop -->
     </div>
-    <button @click="active=!active" class="close-button">
+    <button @click="active=!active" class="close-button" v-if="!active">
       <v-icon class="exit" v-if="!active">fa fa-bars</v-icon>
     </button>
   </div>
@@ -34,6 +56,7 @@ export default {
   cursor: pointer;
   float: right;
   margin-right: 20px;
+  z-index: 1;
 }
 .theme--light.v-icon {
   color: unset;
@@ -45,25 +68,54 @@ export default {
   font-size: 36px;
   margin-left: 50px;
 }
-.active {
-  height: 100%;
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(-100%);
+  transition: all 250ms ease-in 0s;
+}
+
+.sidebar-panel {
+  overflow-y: auto;
+  background-color: #102235;
   position: fixed;
-  z-index: 1;
-  top: 0;
   left: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
-  width: 100%;
-  transition: 0.5s;
-  background: #38404c;
+  top: 0;
+  height: 100%;
+  z-index: 999;
+  padding: 3rem 20px 2rem 20px;
+  width: 20%;
 }
-.active ::after {
-  transition: 0.5s;
-}
+
 .exit {
   cursor: pointer;
+  float: right;
+  margin-right: 28px;
+  margin-top: 14px;
+}
+
+.menu-items {
   display: flex;
-  margin-left: 16%;
-  margin-top: 2%;
+  justify-content: center;
+}
+ul {
+  list-style-type: none;
+  text-align: center;
+  margin-top: 5%;
+}
+li {
+  font-size: 30px;
+  margin-top: 20%;
+}
+li:hover {
+  font-size: 35px;
+  cursor: pointer;
+}
+.v-application ul {
+  padding: unset;
 }
 </style>
