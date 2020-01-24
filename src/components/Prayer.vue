@@ -1,31 +1,30 @@
 <template>
-  <v-container>
-    <div class="nav-bar">
-      <router-link to="monthly">
-        <v-icon>fa fa-calendar</v-icon>
-      </router-link>
-    </div>
-
-    <div class="times">
-      <div class="header-img">
-        <img src="../assets/prayer-img.png" class="logo-img" />
+  <div>
+    <NavBar></NavBar>
+    <v-container>
+      <div class="times">
+        <div class="header-img">
+          <img src="../assets/prayer-img.png" class="logo-img" />
+        </div>
+        <!-- <h1>{{wholeResponse}}</h1> -->
+        <h1>{{wholeResponse.city}}</h1>
+        <h1>{{dateResponse.data}}</h1>
+        <h4>Fajr: {{wholeResponse.fajr}}</h4>
+        <h4 class="sunrise">Sunrise: {{wholeResponse.sunrise}}</h4>
+        <h4>Dhuhr: {{wholeResponse.dhuhr}}</h4>
+        <h4>Asr: {{wholeResponse.asr}}</h4>
+        <h4 class="sunset">Magrib: {{wholeResponse.magrib}}</h4>
+        <h4>Isha: {{wholeResponse.isha}}</h4>
       </div>
-      <!-- <h1>{{wholeResponse}}</h1> -->
-      <h1>{{wholeResponse.city}}</h1>
-      <h1>{{dateResponse.data}}</h1>
-      <h4>Fajr: {{wholeResponse.fajr}}</h4>
-      <h4 class="sunrise">Sunrise: {{wholeResponse.sunrise}}</h4>
-      <h4>Dhuhr: {{wholeResponse.dhuhr}}</h4>
-      <h4>Asr: {{wholeResponse.asr}}</h4>
-      <h4 class="sunset">Magrib: {{wholeResponse.magrib}}</h4>
-      <h4>Isha: {{wholeResponse.isha}}</h4>
-    </div>
-  </v-container>
+    </v-container>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
+import NavBar from "./NavBar";
 export default {
+  components: { NavBar },
   data() {
     return {
       wholeResponse: [],
