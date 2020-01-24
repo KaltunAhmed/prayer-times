@@ -11,9 +11,11 @@
               <!-- list -->
               <ul>
                 <li>
+                  <v-icon>fa fa-star-and-crescent</v-icon>
                   <button>Calander</button>
                 </li>
                 <li>
+                  <v-icon>fa fa-star-and-crescent</v-icon>
                   <button>Quran</button>
                 </li>
                 <li>
@@ -117,5 +119,11 @@ li:hover {
 }
 .v-application ul {
   padding: unset;
+}
+
+@media only screen and (max-width: 740px) {
+  .sidebar-panel {
+    width: 50%;
+  }
 }
 </style>
