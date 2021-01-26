@@ -1,129 +1,101 @@
 <template>
-  <div>
-    <button @click="active=!active" class="open-button">
-      <v-icon class="exit" v-if="active">fa fa-times</v-icon>
-    </button>
-    <div class="static" :class="{ 'active' : active, 'close-div' :!active }">
-      <div class="side-bar-backdrop">
-        <transition name="slide">
-          <div v-if="active" class="sidebar-panel">
-            <div v-if="active" class="menu-items">
-              <!-- list -->
-              <ul>
-                <li>
-                  <v-icon>fa fa-star-and-crescent</v-icon>
-                  <button>Calander</button>
-                </li>
-                <li>
-                  <v-icon>fa fa-star-and-crescent</v-icon>
-                  <button>Quran</button>
-                </li>
-                <li>
-                  <button>Dua</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </transition>
-        <!-- button -->
+  <section>
+    <b-sidebar
+      type="is-light"
+      :fullheight="fullheight"
+      :fullwidth="fullwidth"
+      :overlay="overlay"
+      :right="right"
+      v-model="open"
+    >
+      <div class="p-1">
+        <img
+          src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
+          alt="Lightweight UI components for Vue.js based on Bulma"
+        />
+        <b-menu>
+          <b-menu-list label="Menu">
+            <b-menu-item icon="information-outline" label="Info"></b-menu-item>
+            <b-menu-item icon="settings">
+              <template slot="label" slot-scope="props">
+                Administrator
+                <b-icon
+                  class="is-pulled-right"
+                  :icon="props.expanded ? 'menu-down' : 'menu-up'"
+                ></b-icon>
+              </template>
+              <b-menu-item icon="account" label="Users"></b-menu-item>
+              <b-menu-item icon="cellphone-link">
+                <template slot="label">
+                  Devices
+                  <b-dropdown
+                    aria-role="list"
+                    class="is-pulled-right"
+                    position="is-bottom-left"
+                  >
+                    <b-icon icon="dots-vertical" slot="trigger"></b-icon>
+                    <b-dropdown-item aria-role="listitem"
+                      >Action</b-dropdown-item
+                    >
+                    <b-dropdown-item aria-role="listitem"
+                      >Another action</b-dropdown-item
+                    >
+                    <b-dropdown-item aria-role="listitem"
+                      >Something else</b-dropdown-item
+                    >
+                  </b-dropdown>
+                </template>
+              </b-menu-item>
+              <b-menu-item
+                icon="cash-multiple"
+                label="Payments"
+                disabled
+              ></b-menu-item>
+            </b-menu-item>
+            <b-menu-item icon="account" label="My Account">
+              <b-menu-item label="Account data"></b-menu-item>
+              <b-menu-item label="Addresses"></b-menu-item>
+            </b-menu-item>
+          </b-menu-list>
+          <b-menu-list>
+            <b-menu-item
+              label="Expo"
+              icon="link"
+              tag="router-link"
+              target="_blank"
+              to="/expo"
+            ></b-menu-item>
+          </b-menu-list>
+          <b-menu-list label="Actions">
+            <b-menu-item label="Logout"></b-menu-item>
+          </b-menu-list>
+        </b-menu>
       </div>
-      <!-- side bar backdrop -->
-    </div>
-    <button @click="active=!active" class="close-button" v-if="!active">
-      <v-icon class="exit" v-if="!active">fa fa-bars</v-icon>
-    </button>
-  </div>
+    </b-sidebar>
+    <div class="block"></div>
+    <b-button @click="open = true">Show</b-button>
+  </section>
 </template>
 <script>
+import Vue from "vue";
+import Buefy from "buefy";
+import "buefy/dist/buefy.css";
+
+Vue.use(Buefy);
+
 export default {
   name: "NavBar",
 
   data() {
     return {
-      active: false
+      open: false,
+      overlay: true,
+      fullheight: true,
+      fullwidth: false,
+      right: false,
     };
   },
-  methods: {
-    toggleNav() {
-      this.active = !this.active;
-    }
-  }
+  methods: {},
 };
 </script>
-<style>
-.open {
-  color: rgb(223, 219, 219);
-}
-.open-button {
-  cursor: pointer;
-  float: right;
-  margin-right: 20px;
-  z-index: 1;
-}
-.theme--light.v-icon {
-  color: unset;
-}
-.close-button {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-.slide-enter-active,
-.slide-leave-active {
-  transition: transform 0.3s ease;
-}
-
-.slide-enter,
-.slide-leave-to {
-  transform: translateX(-100%);
-  transition: all 250ms ease-in 0s;
-}
-
-.sidebar-panel {
-  overflow-y: auto;
-  background-color: #102235;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  z-index: 999;
-  padding: 3rem 20px 2rem 20px;
-  width: 20%;
-}
-
-.exit {
-  cursor: pointer;
-  float: right;
-  margin-right: 28px;
-  margin-top: 14px;
-}
-
-.menu-items {
-  display: flex;
-  justify-content: center;
-}
-ul {
-  list-style-type: none;
-  text-align: center;
-  margin-top: 5%;
-}
-li {
-  font-size: 30px;
-  margin-top: 20%;
-}
-li:hover {
-  font-size: 35px;
-  cursor: pointer;
-}
-.v-application ul {
-  padding: unset;
-}
-
-@media only screen and (max-width: 740px) {
-  .sidebar-panel {
-    width: 50%;
-  }
-}
-</style>
+<style></style>
