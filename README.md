@@ -1,16 +1,16 @@
 # prayer-app
 
-Welcome to the prayer-app project. In Sha Allah this project will bring us Kayr.
+Welcome to the prayer-app project. I'm really excited to open this up, In Sha Allah this project will bring us Kayr and help us learn in the process.
 
-If you would like to make changes...
+If you would like to contribute...
 
-- Clone the repository
+- Clone this repository
 
 - Create a branch
 
 - Make your changes
 
-- Make a pull request
+- Make a pull request (make sure you're commit message describes your changes)
 
 Let's build somthing beautiful.
 
