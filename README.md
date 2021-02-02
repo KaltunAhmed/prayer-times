@@ -10,7 +10,7 @@ If you would like to contribute...
 
 - Make your changes
 
-- Make a pull request (make sure you're commit message describes your changes)
+- Make a pull request (make sure your commit message describes your changes)
 
 Let's build somthing beautiful.
 
