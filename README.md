@@ -6,7 +6,7 @@ If you would like to contribute...
 
 - Clone this repository
 
-- Message me and request the .env file
+- Message me and request the .env file & I'll also make you a contributor to the project
 
 - Create a branch
 
