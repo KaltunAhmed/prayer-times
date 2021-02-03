@@ -1,6 +1,6 @@
 # prayer-app
 
-Welcome to the prayer-app project. I'm really excited to open this up, In Sha Allah this project will bring us Kayr and help us learn in the process.
+Welcome to the prayer-app project. I'm really excited to open this up, Insha'Allah this project will bring us Kayr and help us learn in the process.
 
 If you would like to contribute...
 
@@ -10,7 +10,7 @@ If you would like to contribute...
 
 - Message me and request the .env file.
 
-- Create a new branch on your forked repo to work on!
+- Create a new branch onto your forked repo to work on!
 
 - Make your changes and push to your fork.
 
@@ -18,7 +18,7 @@ If you would like to contribute...
 
 - For a step by step guide on how to contribute watch this [video](https://www.youtube.com/watch?v=waEb2c9NDL8)
 
-Let's build somthing beautiful.
+Let's build somthing beautiful Insha'Allah.
 
 ## Project setup
 
