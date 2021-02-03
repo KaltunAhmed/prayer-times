@@ -4,15 +4,19 @@ Welcome to the prayer-app project. I'm really excited to open this up, In Sha Al
 
 If you would like to contribute...
 
-- Clone this repository
+- Create a personal fork of the project on Github.
 
-- Message me and request the .env file & I'll also make you a contributor to the project
+- Clone the fork on your local machine.
 
-- Create a branch
+- Message me and request the .env file.
 
-- Make your changes
+- Create a new branch on your forked repo to work on!
 
-- Make a pull request (make sure your commit message describes your changes)
+- Make your changes and push to your fork.
+
+- Make a pull request against the original repo (make sure your commit message describes your changes)
+
+- For a step by step guide on how to contribute watch this [video](https://www.youtube.com/watch?v=waEb2c9NDL8)
 
 Let's build somthing beautiful.
 
