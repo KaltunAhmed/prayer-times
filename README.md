@@ -6,7 +6,7 @@ If you would like to contribute...
 
 - Create a personal fork of the project on Github.
 
-- Clone the fork on your local machine.
+- Clone the fork onto your local machine.
 
 - Message me and request the .env file.
 
