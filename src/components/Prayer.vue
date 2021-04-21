@@ -8,14 +8,13 @@
         <span v-show="requestError" id="error">
           {{errorMessage}} &#x1F62C;  <!-- &#x1F62C = grimacing face -->
         </span>
-        <form v-show="!locationDetermined" v-on:submit.prevent="getPrayerTimes({method: 'city-state-country'})">
-          <input placeholder="Enter City (ex: Miami)" v-model="city" type="text" id="city" required/>
-          <br>
-          <input placeholder="Enter State (ex: FL)" v-model="state" type="text" id="state"/>
-          <br>
-          <input placeholder="Enter Country (ex: US)" v-model="country" type="text" id="country" required/>
-          <br>
-          <input type="submit" value="Get Prayer Times"/>
+        <form v-show="!locationDetermined" v-on:submit.prevent="getPrayerTimes({method: 'city-state-country'});">
+          <input placeholder="Enter name of your City and select " v-model="cityInput" type="text" id="cityInput" required/>
+          <ul class="matchingLocations" id="matchingLocations">
+            <li v-for="(item,index) in cities" v-bind:key="index" v-on:click="res = item.matching_full_name.split(', '); cityInput=item.matching_full_name; city=res[0], state=res[1], country=[2]">
+                {{ item.matching_full_name }} 
+            </li><!-- {{ LIST OF LOCATIONS, WITH MATCHING LETTERS IN BOLD }}  -->
+          </ul>
         </form>
         <div v-if="locationDetermined">
           <h1>{{ city }}</h1>
@@ -49,8 +48,20 @@ export default {
       locationDetermined: false,
       requestError: false,
       errorMessage: 'Failed to Get Prayer Times',
+
+      cityInput: '',
+      cities: []
     };
   },
+
+  watch: {
+    // whenever input changes, this function will run
+    cityInput: function (newCity, oldCity) {
+      newCity+oldCity;
+      newCity==""?this.cities=[]:this.updateCities(newCity);
+    }
+  },
+
   mounted() {
     // enable checks for query parameters
     // this would allow bookmarking prayer locations
@@ -119,8 +130,17 @@ export default {
           console.error('Error setting up the request:', error.message);
         }
         this.requestError = true; // displays error message
+      }
+    },
+
+    async updateCities(newCity){
+       await axios.get(`https://api.teleport.org/api/cities/?search=${newCity}`)
+        .then((response)=>{this.cities=response.data._embedded[`city:search-results`]})
+        .catch((err)=>{console.log(err)});
+      //console.log(this.result);
+      //axios is returning blank
+      //this.cities= result['_embedded']['city:search-results'];
     }
-  }
   },
 };
 </script>
@@ -176,9 +196,32 @@ input[type=text] {
   text-align: center;
   color: white;
   margin-bottom: 10px;
+  width:300px;
 }
 span {
   color: gold;
   margin-bottom: 20px;
+}
+
+.matchingLocations {
+  background-color:rgb(41, 38, 38);
+  width:300px;
+  text-align: center;
+  list-style-type: none;
+  margin:0 auto;
+  max-height: 200px;
+  overflow-Y:scroll;
+  padding: 0;
+}
+.matchingLocations li{
+  border-bottom:1px rgb(110, 102, 102) solid;
+  text-align: start;
+  /* font-size: 12px; */
+  font-family: 'Times New Roman', Times, serif;
+  padding:2px 4px;
+  letter-spacing: normal;
+}
+.matchingLocations li:hover {
+  background-color:rgba(37, 201, 193, 0.411);
 }
 </style>
