@@ -8,15 +8,15 @@
         <span v-show="requestError" id="error">
           {{errorMessage}} &#x1F62C;  <!-- &#x1F62C = grimacing face -->
         </span>
-        <form v-show="!locationDetermined" v-on:submit.prevent="getPrayerTimes({method: 'city-state-country'});">
+        <form  v-on:submit.prevent="getPrayerTimes({method: 'city-state-country'});">
           <input placeholder="Enter name of your City and select " v-model="cityInput" type="text" id="cityInput" required/>
           <ul class="matchingLocations" id="matchingLocations">
-            <li v-for="(item,index) in cities" v-bind:key="index" v-on:click="res = item.matching_full_name.split(', '); cityInput=item.matching_full_name; city=res[0], state=res[1], country=[2]">
+            <li v-for="(item,index) in cities" v-bind:key="index" v-on:click="res = item.matching_full_name.split(', '); cityInput=res.join(', '); city=res[0], state=res[1], country=[2]">
                 {{ item.matching_full_name }} 
             </li><!-- {{ LIST OF LOCATIONS, WITH MATCHING LETTERS IN BOLD }}  -->
           </ul>
         </form>
-        <div v-if="locationDetermined">
+        <div v-if="locationDetermined && cityInput=='' ">
           <h1>{{ city }}</h1>
           <h1>{{ wholeResponse.data.date.gregorian.date}}</h1>
           <h4>Fajr: {{ wholeResponse.data.timings.Fajr }}</h4>
@@ -114,6 +114,9 @@ export default {
       this.wholeResponse = response.data;
       this.locationDetermined = true;
       this.requestError = false;
+
+      this.cityInput = '';
+
     } catch(error) {
         if (error.response) {
           // The request was made and the server responded with a status code
