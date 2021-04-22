@@ -60,7 +60,7 @@ export default {
   watch: {
     // whenever input changes, this function will run
     cityInput: function (newCity, oldCity) {
-      newCity+oldCity;
+      newCity+oldCity; //to bypass 'no-unused-variables' error
       newCity==""?this.cities=[]:this.updateCities(newCity);
     }
   },
@@ -143,9 +143,7 @@ export default {
        await axios.get(`https://api.teleport.org/api/cities/?search=${newCity}`)
         .then((response)=>{this.cities=response.data._embedded[`city:search-results`]})
         .catch((err)=>{console.log(err)});
-      //console.log(this.result);
-      //axios is returning blank
-      //this.cities= result['_embedded']['city:search-results'];
+      
     }
   },
 };
