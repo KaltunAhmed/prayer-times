@@ -8,18 +8,24 @@
         <span v-show="requestError" id="error">
           {{errorMessage}} &#x1F62C;  <!-- &#x1F62C = grimacing face -->
         </span>
-        <form  v-on:submit.prevent="getPrayerTimes({method: 'city-state-country'});">
-          <input placeholder="Enter name of your City and select " 
-            v-model="cityInput" type="text" id="cityInput" required/>
-          <ul class="matchingLocations" id="matchingLocations">
-            <li v-for="(item,index) in cities" v-bind:key="index" 
-              v-on:click="res = item.matching_full_name.split(', '); 
-              cityInput=res.join(', '); city=res[0], state=res[1], country=[2]">
-                {{ item.matching_full_name }} 
-            </li><!-- {{ LIST OF LOCATIONS, WITH MATCHING LETTERS IN BOLD }}  -->
-          </ul>
-        </form>
-        <div v-if="locationDetermined && cityInput=='' ">
+        <div class="searchBar">
+          <b-field >
+            <b-autocomplete
+                rounded
+                v-model="cityInput"
+                :data="matchingCities"
+                placeholder="Enter name of your city and select"
+                icon="magnify"
+                clearable
+                check-infinite-scroll
+                @select=" option => (res = option.split(', '), city=res[0], state=res[1], country=res[2], getPrayerTimes() )"
+                
+                >
+                <template #empty>City not found</template>
+            </b-autocomplete>
+          </b-field>
+        </div>
+        <div v-if="locationDetermined">
           <h1>{{ city }}</h1>
           <h1>{{ wholeResponse.data.date.gregorian.date}}</h1>
           <h4>Fajr: {{ wholeResponse.data.timings.Fajr }}</h4>
@@ -146,6 +152,11 @@ export default {
       
     }
   },
+  computed: {
+    matchingCities() {
+      return this.cities.map(c => c.matching_full_name);
+    }
+  }
 };
 </script>
 
@@ -207,25 +218,8 @@ span {
   margin-bottom: 20px;
 }
 
-.matchingLocations {
-  background-color:rgb(41, 38, 38);
-  width:300px;
-  text-align: center;
-  list-style-type: none;
+.searchBar {
+  width:400px;
   margin:0 auto;
-  max-height: 200px;
-  overflow-Y:scroll;
-  padding: 0;
-}
-.matchingLocations li{
-  border-bottom:1px rgb(110, 102, 102) solid;
-  text-align: start;
-  /* font-size: 12px; */
-  font-family: 'Times New Roman', Times, serif;
-  padding:2px 4px;
-  letter-spacing: normal;
-}
-.matchingLocations li:hover {
-  background-color:rgba(37, 201, 193, 0.411);
 }
 </style>
