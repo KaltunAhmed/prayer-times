@@ -25,7 +25,7 @@
             </b-autocomplete>
           </b-field>
         </div>
-        <div v-if="locationDetermined">
+        <div v-if="locationDetermined" >
           <h1>{{ city }}</h1>
           <h1>{{ wholeResponse.data.date.gregorian.date}}</h1>
           <h4>Fajr: {{ wholeResponse.data.timings.Fajr }}</h4>
@@ -59,7 +59,8 @@ export default {
       errorMessage: 'Failed to Get Prayer Times',
 
       cityInput: '',
-      cities: []
+      cities: [],
+      previousCity:''
     };
   },
 
@@ -124,6 +125,7 @@ export default {
       this.locationDetermined = true;
       this.requestError = false;
 
+      this.previousCity = this.city;
       this.cityInput = '';
 
     } catch(error) {
@@ -141,6 +143,7 @@ export default {
           // Something happened in setting up the request that triggered an Error
           console.error('Error setting up the request:', error.message);
         }
+        this.city = this.previousCity; //ensures city matches displayed timetable
         this.requestError = true; // displays error message
       }
     },
