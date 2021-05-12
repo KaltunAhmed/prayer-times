@@ -8,16 +8,24 @@
         <span v-show="requestError" id="error">
           {{errorMessage}} &#x1F62C;  <!-- &#x1F62C = grimacing face -->
         </span>
-        <form v-show="!locationDetermined" v-on:submit.prevent="getPrayerTimes({method: 'city-state-country'})">
-          <input placeholder="Enter City (ex: Miami)" v-model="city" type="text" id="city" required/>
-          <br>
-          <input placeholder="Enter State (ex: FL)" v-model="state" type="text" id="state"/>
-          <br>
-          <input placeholder="Enter Country (ex: US)" v-model="country" type="text" id="country" required/>
-          <br>
-          <input type="submit" value="Get Prayer Times"/>
-        </form>
-        <div v-if="locationDetermined">
+        <div class="searchBar">
+          <b-field >
+            <b-autocomplete
+                rounded
+                v-model="cityInput"
+                :data="matchingCities"
+                placeholder="Enter name of your city and select"
+                icon="magnify"
+                clearable
+                check-infinite-scroll
+                @select=" option => (res = option.split(', '), city=res[0], state=res[1], country=res[2], getPrayerTimes() )"
+                
+                >
+                <template #empty>City not found</template>
+            </b-autocomplete>
+          </b-field>
+        </div>
+        <div v-if="locationDetermined" >
           <h1>{{ city }}</h1>
           <h1>{{ wholeResponse.data.date.gregorian.date}}</h1>
           <h4>Fajr: {{ wholeResponse.data.timings.Fajr }}</h4>
@@ -49,8 +57,20 @@ export default {
       locationDetermined: false,
       requestError: false,
       errorMessage: 'Failed to Get Prayer Times',
+
+      cityInput: '',
+      cities: [],
+      previousCity:''
     };
   },
+
+  watch: {
+    // whenever input changes, this function will run
+    cityInput: function (newCity) {
+      newCity == "" ? this.cities = [] : this.updateCities(newCity);
+    }
+  },
+
   mounted() {
     // enable checks for query parameters
     // this would allow bookmarking prayer locations
@@ -103,6 +123,10 @@ export default {
       this.wholeResponse = response.data;
       this.locationDetermined = true;
       this.requestError = false;
+
+      this.previousCity = this.city;
+      this.cityInput = '';
+
     } catch(error) {
         if (error.response) {
           // The request was made and the server responded with a status code
@@ -118,10 +142,23 @@ export default {
           // Something happened in setting up the request that triggered an Error
           console.error('Error setting up the request:', error.message);
         }
+        this.city = this.previousCity; //ensures city matches displayed timetable
         this.requestError = true; // displays error message
+      }
+    },
+
+    async updateCities(newCity){
+       await axios.get(`https://api.teleport.org/api/cities/?search=${newCity}`)
+        .then((response)=>{this.cities=response.data._embedded[`city:search-results`]})
+        .catch((err)=>{console.log(err)});
+      
+    }
+  },
+  computed: {
+    matchingCities() {
+      return this.cities.map(c => c.matching_full_name);
     }
   }
-  },
 };
 </script>
 
@@ -176,9 +213,15 @@ input[type=text] {
   text-align: center;
   color: white;
   margin-bottom: 10px;
+  width:300px;
 }
 span {
   color: gold;
   margin-bottom: 20px;
+}
+
+.searchBar {
+  width:400px;
+  margin:0 auto;
 }
 </style>
