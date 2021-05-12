@@ -66,9 +66,8 @@ export default {
 
   watch: {
     // whenever input changes, this function will run
-    cityInput: function (newCity, oldCity) {
-      newCity+oldCity; //to bypass 'no-unused-variables' error
-      newCity==""?this.cities=[]:this.updateCities(newCity);
+    cityInput: function (newCity) {
+      newCity == "" ? this.cities = [] : this.updateCities(newCity);
     }
   },
 
