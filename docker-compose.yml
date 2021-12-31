@@ -1,0 +1,6 @@
+version: '3'
+services:
+  prayer-times:
+    build: .
+    ports:
+      - "3030:8080"
