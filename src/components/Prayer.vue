@@ -3,7 +3,7 @@
     <v-container>
       <div class="times">
         <div class="header-img">
-          <img src="../assets/prayer-img.png" class="logo-img" />
+          <img src="../assets/mosque-transparent-bg.png" class="logo-img" />
         </div>
         <span v-show="requestError" id="error">
           {{ errorMessage }} &#x1F62C;
