@@ -1,23 +1,27 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import Search from "./../components/search";
+import {PrayerTimes} from "./../components/searchResults/index"
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
-        <title>Prayer Times</title>
+        <title>Prayer Times - v2</title>
       </Head>
-
-    <Nav/>
-    <SearchBar/>
-    <Cards/>
-
-    -Services directory 
-    - API Calls 
-   
-        
-      
-    </div>
-  )
+      <section>
+        <div className="header-img">
+          <img src="../mosque-transparent-bg.png" className="logo-img" />
+        </div>
+        <h1>Welcome to Prayer Times</h1>
+      </section>
+      <section>
+        <Search className={"searchBar"} />
+      </section>
+      <section>
+        <PrayerTimes/>
+      </section>
+    </>
+  );
 }

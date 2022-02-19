@@ -114,3 +114,114 @@
     flex-direction: column;
   }
 }
+
+/* COPIED FROM OLD PROJECT */
+.prayer__times {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.nav-bar {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  width: 20%;
+}
+.v-icon {
+  color: white;
+  text-align: center;
+  margin-top: 20%;
+  margin-left: 5%;
+}
+.logo-img {
+  margin: 0 auto;
+  display: flex;
+  width: 20%;
+}
+@media only screen and (max-width: 740px) {
+  .logo-img {
+    width: 50%;
+  }
+}
+.times {
+  padding: 20px;
+  margin: o auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  letter-spacing: 3px;
+}
+.sunrise {
+  color: #f3eb83;
+}
+.sunset {
+  color: #f79464;
+}
+/* h1 {
+  font-size: 55px;
+}
+h4 {
+  font-size: 30px;
+}
+
+span {
+  color: gold;
+  margin-bottom: 20px;
+} */
+.searchBar input {
+  text-align: center;
+  color: rgb(190, 0, 0);
+  background-color: white;
+  margin-bottom: 10px;
+  width: 300px;
+  padding-left: 20%
+}
+.searchBar {
+  width: 500px;
+  margin: 0 auto;
+  background-color: rgb(197, 12, 12);
+  border: 3px solid red;
+  color: white;
+}
+
+/* Prayer Time Card */
+.prayer {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  background: rgba(11, 4, 114, 0.815);
+  width: 50vh;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 2%;
+  position: relative;
+}
+.prayer__logo {
+  width: 100px;
+  border-radius: 12px 0 0 12px;
+  background: darkcyan;
+}
+.prayer__time {
+  width: 100%;
+  font-size: 60px;
+  text-align: center;
+  width: 100%;
+  align-self: center;
+  padding: 0%;
+  margin: 0;
+}
+.prayer__name {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color:orange;
+    padding: 2%;
+    text-align:right
+    /* background:rebeccapurple; */
+}
