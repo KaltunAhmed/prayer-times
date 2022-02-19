@@ -1,6 +1,25 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Getting Started - Docker
+
+You should be able to run or develop the app in Docker by simply running:
+
+```docker
+docker-compose up --build
+# or if you prefer it be quiet
+docker-compose up -d --build
+```
+
+and when you want to stop
+
+```docker
+docker-compose stop
+# or simply (if container is not running quietly)
+CTRL/CMD + C
+```
+NOTE: For hot reload, you need to run docker from a linux environment (including WSL) so you have to clone the repo into your linux environment
+
+## Getting Started - Locally
 
 First, run the development server:
 

@@ -14,7 +14,7 @@ export default function Home() {
         <div className="header-img">
           <img src="../mosque-transparent-bg.png" className="logo-img" />
         </div>
-        <h1>Welcome to Prayer Times</h1>
+        <h1>Welcome to Prayer Times - v2</h1>
       </section>
       <section>
         <Search className={"searchBar"} />
