@@ -47,15 +47,17 @@ const FormInput = styled.input`
 const FormWrapper = styled.div`
   display: flex;
   background:#000e20;
+  padding:5% 0;
 `;
 const FormIcon = styled.div`
     font-size:2rem;    
-`
-export const Input = ({ value, setValue }) => {
+`;
+
+export const Input = ({ value, setValue, ...props }) => {
   return (
     <>
       <FormWrapper>
-        <FormIcon>🏙️</FormIcon>
+        {/* <FormIcon>🏙️</FormIcon> */}
         <Form>
           <FormInput
             type="text"
