@@ -10,6 +10,7 @@ const Ul = styled.ul.attrs(props => ({ className: props.className }))`
   border-radius:4px;
   max-height:45vh;
   overflow-y:scroll;
+  z-index:100;
 `
 const Li = styled.li`
   color: white;
@@ -23,14 +24,15 @@ const Li = styled.li`
   }
 `;
 
-export const Results = ({ results, setSelected }) => {
+export const Results = ({ results, setSelected, className }) => {
+
   return (
-    <Ul className="divide-y divide-dashed">
+    <Ul className={`${className} divide-y divide-dashed`}>
       {results.map((result, index) => (
         <Li
           key={index}
           onClick={(e) => {
-            setSelected(result.matching_full_name);
+            setSelected(result.matching_full_name.replaceAll(new RegExp("\\(\\w.+\\)$","gi"),""));
           }}
         >
           {result.matching_full_name}
