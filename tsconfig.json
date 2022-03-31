@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/search/index.tsx", "components/searchResults/index.tsx"  ],
+, "components/search/index.tsx", "components/old/index.tsx"  ],
   "exclude": [
     "node_modules"
   ]
