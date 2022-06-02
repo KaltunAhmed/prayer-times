@@ -5,28 +5,52 @@ import { useEffect, useState } from "react";
 import Search from "./../components/search";
 import { Card } from "../components/card";
 import { theme } from "./../styles/theme";
+import GlobalStyle from './../styles/global';
+import { Results } from "../components/search/results";
 
 const LogoWrapper = styled.div.attrs(props => ({ className: props.className }))`
-  top: 0;
-  display: block;
-  height:fit-content;
+  display: flex;
+  position: relative;
+  align-items:center;
+  justify-content: center;
+  flex-direction: column;
+  width:100%;
 
   img {
-    margin: 0 auto;
+    width: 10em;
+  }
+`;
+const Main = styled.main.attrs(props => ({ className: props.className }))`
+  display: flex;
+  flex-direction: column;
+  width:80%;
+  height:100%;
+  align-items: center;
+  border-radius: 0 0 7px 7px;
+  filter: drop-shadow(2px 4px 6px black);
+
+  @media screen and (max-width:500px){
+    width: 92%;
   }
 `;
 const Section = styled.section.attrs(props => ({ className: props.className }))`
   text-align: center;
-  padding: 0 10%;
-  color: ${( props ) => props.theme.colors['theme-7']};
+  padding: 0;
+  color: ${(props) => props.theme.colors['B50']};
   font-size: 25px;
-  margin: 2% 0;
+  margin: 10px 0;
+  position: relative;
+
+  border-radius: 7px;
+  filter: drop-shadow(2px 4px 6px black);;
+  width:100%;
 `;
 
 export default function Home() {
 
   const [selected, setSelected] = useState("");
   const [prayerTimes, setPrayerTimes] = useState({});
+  const [nextPrayer, setNextPrayer] = useState({});
 
   useEffect(() => {
     if (!selected.length) return;
@@ -36,8 +60,18 @@ export default function Home() {
       await fetch(`https://api.aladhan.com/v1/timingsByCity?city=${city}&state=${state}&country=${country}`)
         .then(res => res.json())
         .then(data => {
-          setPrayerTimes(data.data.timings);
+          // setPrayerTimes(data.data.timings);
           // console.log(data.data.timings, prayerTimes);
+          const { Fajr, Dhuhr, Asr, Maghrib, Isha } = data.data.timings;
+
+          const mainPrayers = { Fajr, Dhuhr, Asr, Maghrib, Isha };
+          setPrayerTimes(mainPrayers);
+
+          const nextPrayer = calculateNextPrayer([{ Fajr }, { Dhuhr }, { Asr }, { Maghrib }, { Isha }]);
+
+          setNextPrayer(nextPrayer.length ? Object.keys(nextPrayer[0])[0] : "Fajr");
+          // console.log(nextPrayer)
+
           return data;
         })
         .catch(err =>
@@ -45,40 +79,71 @@ export default function Home() {
         );
 
     })();
-  }, [selected])
+  }, [selected]);
+
+  const calculateNextPrayer = (times) => {
+    //we should consider user checking prayer times for a foreign city
+    const timeNow = (new Date()).toLocaleTimeString().slice(0, 5);
+    const sorted = times.filter((a) => {
+      return Object.values(a)[0] >= timeNow
+    });
+    return sorted;
+  }
+
+  const country = selected.split(', ')[2];
 
   return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <title>Prayer Times - v2</title>
-      </Head>
-      <div className="relative flex flex-wrap bg-theme-1 text-white w-full text-center p-0 m-0">
-        <LogoWrapper className="header-img p-0 w-full">
-          <img src="../mosque-transparent-bg.png" className="logo-img" />
-        </LogoWrapper>
-        <Search setSelected={setSelected} />
-      </div>
+    <>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <Head>
+          <title>Prayer Times - v2</title>
+        </Head>
+        <header className="relative flex flex-wrap bg-theme-1 inline-block text-white w-full text-center p-0 m-0">
+          <LogoWrapper className="header-img p-0">
+            <img alt="mosque logo" src="../mosque-transparent-bg.png" />
+          </LogoWrapper>
+          <Search setSelected={setSelected} />
+        </header>
 
-      {/* 
-      <section>
-        <h1 className="text-white">Welcome to Prayer Times - v2</h1>
-      </section> */}
+        <Main>
 
-      <Section>
-        <h3>{selected}</h3>
-      </Section>
-      <Section>
-        {Object.keys(prayerTimes).length ? (
-          <div className="flex justify-center flex-wrap w-full">
-            <Card prayer={"Fajr"} time={prayerTimes.Fajr} />
-            <Card prayer={"Dhuhr"} time={prayerTimes.Dhuhr} />
-            <Card prayer={"Asr"} time={prayerTimes.Asr} />
-            <Card prayer={"Maghrib"} time={prayerTimes.Maghrib} />
-            <Card prayer={"Isha"} time={prayerTimes.Isha} />
-          </div>
-        )
-          : <p>No location selected</p>}
-      </Section>
-    </ThemeProvider>
+          {selected &&
+            (<Section>
+              <h2>
+                <span>
+                  <img alt={country+"'s flag"} width="50px" height="50px" style={{ display: "inline-flex", margin: "0 10px" }}
+                    src={`https://countryflagsapi.com/svg/${country}`} /></span>
+
+                {selected}
+
+                <span><img alt={country+"'s flag"} width="50px" height="50px" style={{ display: "inline-flex", margin: "0 10px" }}
+                  src={`https://countryflagsapi.com/svg/${country}`}/></span>
+              </h2>
+            </Section>
+            )
+          }
+
+          <Section>
+            {Object.keys(prayerTimes).length ? (
+              <div className="flex w-full justify-center flex-wrap w-full">
+                {
+                  Object.keys(prayerTimes).map((prayer, index) => {
+                    return (
+                      <Card key={index} prayer={prayer} time={prayerTimes[prayer]} bgColor={prayer === nextPrayer ? theme.colors['B100'] : ''} />
+                    )
+                  })
+                }
+              </div>
+            )
+              : <p>No location selected</p>}
+          </Section>
+
+        </Main>
+
+
+      </ThemeProvider>
+    </>
+
   );
 }

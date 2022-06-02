@@ -1,0 +1,75 @@
+<svg width="1777" height="1520" xmlns="http://www.w3.org/2000/svg">
+  <symbol>
+    <polygon id="poly" fill="inherit" stroke="inherit" stroke-width="10" points="112,3.5 220,66 220,191 112,253.5 4,191 4,66"/>
+  </symbol>
+<!--center-->
+  <g transform="translate(500,500)">
+    <use href="#poly" fill="orange" stroke="red" stroke-width="10"/>
+    <use href="#poly" fill="pink" stroke="red" stroke-width="10" transform="translate(226,-130.87)"/>
+    <use href="#poly" fill="purple" stroke="red" stroke-width="10" transform="translate(452)"/>
+    <use href="#poly" fill="magenta" stroke="red" stroke-width="10" transform="translate(452,261.5)"/>
+    <use href="#poly" fill="brown" stroke="red" stroke-width="10" transform="translate(226,392.4)"/>
+    <use href="#poly" fill="red" stroke="red" stroke-width="10" transform="translate(0,261.5)"/>
+    <use href="#poly" fill="fire" stroke="fire" stroke-width="10" transform="translate(226,131.5)"/>
+  </g>
+<!--top-left-->
+  <g transform="translate(-175,110)">
+    <use href="#poly" fill="orange" stroke="red" stroke-width="10"/>
+    <use href="#poly" fill="pink" stroke="red" stroke-width="10" transform="translate(226,-130.87)"/>
+    <use href="#poly" fill="purple" stroke="red" stroke-width="10" transform="translate(452)"/>
+    <use href="#poly" fill="magenta" stroke="red" stroke-width="10" transform="translate(452,261.5)"/>
+    <use href="#poly" fill="brown" stroke="red" stroke-width="10" transform="translate(226,392.4)"/>
+    <use href="#poly" fill="red" stroke="red" stroke-width="10" transform="translate(0,261.5)"/>
+    <use href="#poly" fill="fire" stroke="fire" stroke-width="10" transform="translate(226,131.5)"/>
+  </g>
+<!--top-->
+  <g transform="translate(500,-280)">
+    <use href="#poly" fill="orange" stroke="red" stroke-width="10"/>
+    <use href="#poly" fill="pink" stroke="red" stroke-width="10" transform="translate(226,-130.87)"/>
+    <use href="#poly" fill="purple" stroke="red" stroke-width="10" transform="translate(452)"/>
+    <use href="#poly" fill="magenta" stroke="red" stroke-width="10" transform="translate(452,261.5)"/>
+    <use href="#poly" fill="brown" stroke="red" stroke-width="10" transform="translate(226,392.4)"/>
+    <use href="#poly" fill="red" stroke="red" stroke-width="10" transform="translate(0,261.5)"/>
+    <use href="#poly" fill="fire" stroke="fire" stroke-width="10" transform="translate(226,131.5)"/>
+  </g>
+<!--top-right-->
+  <g transform="translate(1175,110)">
+    <use href="#poly" fill="orange" stroke="red" stroke-width="10"/>
+    <use href="#poly" fill="pink" stroke="red" stroke-width="10" transform="translate(226,-130.87)"/>
+    <use href="#poly" fill="purple" stroke="red" stroke-width="10" transform="translate(452)"/>
+    <use href="#poly" fill="magenta" stroke="red" stroke-width="10" transform="translate(452,261.5)"/>
+    <use href="#poly" fill="brown" stroke="red" stroke-width="10" transform="translate(226,392.4)"/>
+    <use href="#poly" fill="red" stroke="red" stroke-width="10" transform="translate(0,261.5)"/>
+    <use href="#poly" fill="fire" stroke="fire" stroke-width="10" transform="translate(226,131.5)"/>
+  </g>
+<!--bottom-right-->
+  <g transform="translate(1175,890)">
+    <use href="#poly" fill="orange" stroke="red" stroke-width="10"/>
+    <use href="#poly" fill="pink" stroke="red" stroke-width="10" transform="translate(226,-130.87)"/>
+    <use href="#poly" fill="purple" stroke="red" stroke-width="10" transform="translate(452)"/>
+    <use href="#poly" fill="magenta" stroke="red" stroke-width="10" transform="translate(452,261.5)"/>
+    <use href="#poly" fill="brown" stroke="red" stroke-width="10" transform="translate(226,392.4)"/>
+    <use href="#poly" fill="red" stroke="red" stroke-width="10" transform="translate(0,261.5)"/>
+    <use href="#poly" fill="fire" stroke="fire" stroke-width="10" transform="translate(226,131.5)"/>
+  </g>
+<!--bottom-->
+  <g transform="translate(500,1285)">
+    <use href="#poly" fill="orange" stroke="red" stroke-width="10"/>
+    <use href="#poly" fill="pink" stroke="red" stroke-width="10" transform="translate(226,-130.87)"/>
+    <use href="#poly" fill="purple" stroke="red" stroke-width="10" transform="translate(452)"/>
+    <use href="#poly" fill="magenta" stroke="red" stroke-width="10" transform="translate(452,261.5)"/>
+    <use href="#poly" fill="brown" stroke="red" stroke-width="10" transform="translate(226,392.4)"/>
+    <use href="#poly" fill="red" stroke="red" stroke-width="10" transform="translate(0,261.5)"/>
+    <use href="#poly" fill="fire" stroke="fire" stroke-width="10" transform="translate(226,131.5)"/>
+  </g>
+<!--bottom-left-->
+  <g transform="translate(-175,890)">
+    <use href="#poly" fill="orange" stroke="red" stroke-width="10"/>
+    <use href="#poly" fill="pink" stroke="red" stroke-width="10" transform="translate(226,-130.87)"/>
+    <use href="#poly" fill="purple" stroke="red" stroke-width="10" transform="translate(452)"/>
+    <use href="#poly" fill="magenta" stroke="red" stroke-width="10" transform="translate(452,261.5)"/>
+    <use href="#poly" fill="brown" stroke="red" stroke-width="10" transform="translate(226,392.4)"/>
+    <use href="#poly" fill="red" stroke="red" stroke-width="10" transform="translate(0,261.5)"/>
+    <use href="#poly" fill="fire" stroke="fire" stroke-width="10" transform="translate(226,131.5)"/>
+  </g>
+</svg>

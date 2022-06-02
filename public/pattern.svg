@@ -1,0 +1,14 @@
+<svg width="677" height="520" xmlns="http://www.w3.org/2000/svg">
+  <symbol>
+    <polygon id="poly" fill="inherit" stroke="inherit" stroke-width="10" points="112,3.5  220,66 220,191                    112,253.5 4,191 4,66"/>
+  </symbol>
+  
+  <use href="#poly" fill="orange" stroke="red" stroke-width="10"/>
+  <use href="#poly" fill="pink" stroke="red" stroke-width="10" transform="translate(226,-130.87)"/>
+  <use href="#poly" fill="purple" stroke="red" stroke-width="10" transform="translate(452)"/>
+  <use href="#poly" fill="magenta" stroke="red" stroke-width="10" transform="translate(452,261.5)"/>
+  <use href="#poly" fill="brown" stroke="red" stroke-width="10" transform="translate(226,392.4)"/>
+  <use href="#poly" fill="red" stroke="red" stroke-width="10" transform="translate(0,261.5)"/>
+  <use href="#poly" fill="fire" stroke="fire" stroke-width="10" transform="translate(226,131.5)"/>
+
+</svg>

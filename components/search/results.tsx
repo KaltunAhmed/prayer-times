@@ -1,7 +1,8 @@
+import { useEffect, useReducer, useState } from "react";
 import styled from "styled-components";
 
 const List = styled.ul.attrs(props => ({ className: props.className }))`
-  background: ${( props ) => props.theme.colors['black']};
+  background: ${(props) => props.theme.colors['black']};
   position: absolute;
   top: 9.2vh;
   width: 50.4%;
@@ -13,7 +14,7 @@ const List = styled.ul.attrs(props => ({ className: props.className }))`
   z-index: 100;
 `;
 const Li = styled.li`
-  color: ${( props ) => props.theme.colors['theme-8']};
+  color: ${(props) => props.theme.colors['theme-8']};
   padding: 10px;
   list-style-type:none;
   list-style-type: none;
@@ -21,7 +22,7 @@ const Li = styled.li`
 
   :hover,
   :focus {
-    background:${( props ) => props.theme.colors['dark-0']};
+    background:${(props) => props.theme.colors['dark-0']};
   }
 
   :focus {
@@ -31,17 +32,16 @@ const Li = styled.li`
 
 export const Results = ({ results, setSelected, className }) => {
 
-  
   return (
-    <List className={`${className} divide-y divide-dashed`} tabIndex={"0"}>
+    <List className={`${className} divide-y divide-dashed `} tabIndex={"0"}>
       {results.map((result, index) => (
         <Li tabIndex="0"
           key={index}
           onClick={() => {
-            setSelected(result.matching_full_name.replaceAll(new RegExp("\\(\\w.+\\)$","gi"),""));
+            setSelected(result.matching_full_name.replaceAll(new RegExp("\\(\\w.+\\)$", "gi"), ""));
           }}
           onKeyPress={(e) => {
-            e.key === 'Enter' && setSelected(result.matching_full_name.replaceAll(new RegExp("\\(\\w.+\\)$","gi"),""));
+            e.key === 'Enter' && setSelected(result.matching_full_name.replaceAll(new RegExp("\\(\\w.+\\)$", "gi"), ""));
           }}
         >
           {result.matching_full_name}

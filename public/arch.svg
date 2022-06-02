@@ -2,7 +2,7 @@
   <path d="M10,25 V 110 H 90 V 25 H 85 V 15 L50,-10 L15,15 V 25 Z"
     fill="transparent"
     stroke-width="6"
-    stroke="green"
+    stroke="teal"
     />
    <path d="M 10 25 V 110 H 90 V 25 H 85 V 15 L50,-10 L15,15 V 25 Z" 
      fill="transparent" stroke="black"/>

@@ -1,38 +1,19 @@
+import { theme } from "../../styles/theme";
 import styled from "styled-components";
 
-//base64 of svg shape
-const archBg = `PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjMyMCIgdmlld0JveD0iMCAwIDEwMCAxM
-DAiIGZpbGw9ImdyZWVuIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Ik0
-xMCwyNSBWIDExMCBIIDkwIFYgMjUgSCA4NSBWIDE1IEw1MCwtMTAgTDE1LDE1IFYgMjUgWiIKICAgIGZpbGw
-9InRyYW5zcGFyZW50IgogICAgc3Ryb2tlLXdpZHRoPSI2IgogICAgc3Ryb2tlPSJncmVlbiIKICAgIC8+CiAgIDx
-wYXRoIGQ9Ik0gMTAgMjUgViAxMTAgSCA5MCBWIDI1IEggODUgViAxNSBMNTAsLTEwIEwxNSwxNSBWIDI1IFoiIAogI
-CAgIGZpbGw9InRyYW5zcGFyZW50IiBzdHJva2U9ImJsYWNrIi8+Cjwvc3ZnPgo=`;
-
-const PrayerTimesCard = styled.div.attrs(props => ({ className: props.className }))`
-  width:150px;
-  padding:10px;
-  margin: 2%;
-  height: 200px;
+const PrayerTimesCard = styled.div.attrs(props => ({ className: props.className, bgColor: props.bgColor }))`
   position: relative;
-  background-color: none;
-  background-image:url(data:image/svg+xml;base64,${props => archBg}), url(data:image/svg+xml;base64,${props => archBg}), url(data:image/svg+xml;base64,${props => archBg});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: bottom center;
-
+  background-color: ;
+  background: linear-gradient(90deg, rgba(0,255,252,1) 0%, rgba(9,9,121,1) 0%, ${props => props.bgColor} 200%);
   display:flex;
   align-items: center;
   align-content: center;
   justify-content: center;
+  border-radius: 10px;
 
-  div {
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 50%;
-    top: 32%;
+  :hover {
+    background: linear-gradient(90deg, rgba(0,255,252,1) 0%, rgba(9,9,121,1) 0%, ${theme.colors['Y100']} 200%);
+    transition: color 0.1s ease, background-color 1s ease-in;
 
   }
 `;
@@ -42,14 +23,31 @@ interface Props {
   time: string;
 }
 
-export const Card = ({ prayer, time }: Props) => {
+const arabicPT = {
+  "Fajr": "فجر",
+  "Dhuhr": "ظهر",
+  "Asr": "عصر",
+  "Maghrib": "مغرب",
+  "Isha": "عشاء"
+}
+export const Card = ({ prayer, time, ...props }: Props) => {
 
   return (
-    <PrayerTimesCard> 
-      <div>
-        <span>{prayer}: </span>
-        <span>{time}</span>
-      </div>
+    <PrayerTimesCard {...props}>
+      <svg width="240" height="320" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10,25 V 110 H 90 V 25 H 85 V 15 L50,-10 L15,15 V 25 Z"
+          fill="black"
+          strokeWidth="6"
+          stroke={theme.colors['T400']}
+        />
+        <path d="M 10 25 V 110 H 90 V 25 H 85 V 15 L50,-10 L15,15 V 25 Z"
+          fill="transparent" stroke="black" />
+        <text textAnchor="middle"  fontSize={"15.5"} fontStyle={""}>
+          <tspan x="50" y="25" fill={theme.colors['Y100']} style={{ "direction": "rtl" }}>{arabicPT[prayer]}</tspan>
+          <tspan x="50" dy="35" fill="white">{time}</tspan>
+          <tspan x="50" dy="30" fill="white">{prayer}</tspan>
+        </text>
+      </svg>
     </PrayerTimesCard>
   )
 };
