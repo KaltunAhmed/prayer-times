@@ -8,17 +8,17 @@ const Container = styled.div.attrs(props => ({ className: props.className }))`
   align-items:center;
   display:flex;
   width: 100%;
-  height:10vh;
-  background: ${(props) => props.theme.colors['dark-0']};
+  height:70px;
+  background: ${(props) => props.theme.colors['B900']};
 
 `;
 const SearchInput = styled.input.attrs(props => ({ className: props.className }))`
     border-radius: 4px;
-    background: ${(props) => props.theme.colors["black"]};
+    background: ${(props) => props.theme.colors["T900"]};
     width:100%;
     color:  ${(props) => props.theme.colors["theme-8"]};
     padding: 0 1%;
-    box-shadow: 0px 0px 0px 3px  ${(props) => props.theme.colors["theme-8"]};
+    box-shadow: 0px 0px 0px 3px  ${(props) => props.theme.colors["theme-3"]};
     
     height: 50%;
     justify-self: center;
@@ -40,7 +40,7 @@ const Form = styled.form.attrs(props => ({ className: props.className }))`
     }
 `;
 
-const Button = styled.button.attrs(props => ({ className: props.className }))`
+const Button = styled.span.attrs(props => ({ className: props.className }))`
     padding: 1%;
     background:  ${(props) => props.theme.colors["theme-2"]};
     color: ${(props) => props.theme.colors["theme-8"]};
@@ -85,9 +85,10 @@ interface Props {
     setResults?: any;
     setSelected?: any;
     updateInput?: any;
+    className?:any;
 };
 
-const Search = ({ setResults, setSelected, updateInput }: Props) => {
+const Search = ({ setResults, setSelected, updateInput, className }: Props) => {
 
     const [results, setResultsInternal] = useState([]);
     const [input, updateInputInternal] = useState("");
@@ -131,9 +132,9 @@ const Search = ({ setResults, setSelected, updateInput }: Props) => {
     }, [input])
 
     return (
-        <Container>
+        <Container className={className}>
             <Wrapper className="relative h-full w-3/4">
-                <Form role='search' action="/" method="get">
+                <Form role='search' >
                     <div className="w-full h-full flex items-center justify-center">
                         <label htmlFor='city-search' className="hidden">
                             <span className='visually-hidden'>
@@ -142,7 +143,7 @@ const Search = ({ setResults, setSelected, updateInput }: Props) => {
                         </label>
                         <SearchInput ref={searchInputRef} type="text" id="city-search" placeholder="Your city..." onChange={handleUpdateInput} value={input} />
                     </div>
-                    <Button type='submit'>
+                    <Button>
                         <span className='visually-hidden'>
                             {/* <!-- License: CC Attribution. Made by seyfdesigner: https://www.figma.com/@seyfdesigner --> */}
                             <svg width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg" fill="#eee">
