@@ -24,6 +24,7 @@ NOTE: For hot reload, you need to run docker from a linux environment (including
 First, run the development server:
 
 ```bash
+npm install
 npm run dev
 # or
 yarn dev
